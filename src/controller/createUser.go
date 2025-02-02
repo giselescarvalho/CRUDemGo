@@ -9,6 +9,7 @@ import (
 	"github.com/giselescarvalho/CRUDemGo/src/configuration/validation"
 	"github.com/giselescarvalho/CRUDemGo/src/controller/model"
 	"github.com/giselescarvalho/CRUDemGo/src/controller/model/request"
+	"github.com/giselescarvalho/CRUDemGo/src/controller/model/service"
 	"go.uber.org/zap"
 )
 
@@ -33,14 +34,21 @@ func CreateUser(c *gin.Context) {
 
 	fmt.Println("#######\n", userRequest)
 
-	domain := model.NewUserDomain(userRequest.Email, userRequest.Password, userRequest.Name, int(userRequest.Age))
+	domain := model.NewUserDomain(
+		userRequest.Email,
+		userRequest.Password,
+		userRequest.Name,
+		int(userRequest.Age),
+	)
 
-	if err := domain.CreateUser(); err != nil {
+	service := service.NewUserDomainService()
+	if err := service.CreateUser(domain); err != nil {
 		c.JSON(http.StatusOK, err)
 		return
 	}
 
-	logger.Info("User created sucessfully", zap.String("journey", "createUser"))
+	logger.Info("User created sucessfully",
+		zap.String("journey", "createUser"))
 
 	c.String(http.StatusOK, "")
 }

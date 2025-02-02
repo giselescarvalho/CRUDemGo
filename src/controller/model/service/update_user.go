@@ -1,10 +1,11 @@
-package model
+package service
 
 import (
 	"github.com/giselescarvalho/CRUDemGo/src/configuration/apperror"
+	"github.com/giselescarvalho/CRUDemGo/src/controller/model"
 )
 
-func (ud *UserDomain) UpdateUser(string) *apperror.RestErr {
+func (ud *userDomainService) UpdateUser(userId string) (*model.UserDomainInterface, *apperror.RestErr) {
 
 	//logger.Info("Init createUSer model", zap.String("journey", "createUser"))
 
@@ -12,5 +13,5 @@ func (ud *UserDomain) UpdateUser(string) *apperror.RestErr {
 
 	//fmt.Println(ud)
 
-	return nil
+	return nil, nil
 }
