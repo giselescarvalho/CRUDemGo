@@ -9,20 +9,20 @@ type userDomain struct {
 	email    string
 	password string
 	name     string
-	age      int
+	age      int8
 }
 
 type UserDomainInterface interface {
 	GetEmail() string
 	GetPassword() string
 	GetName() string
-	GetAge() int
+	GetAge() int8
 
 	EncryptPassword()
 }
 
 func NewUserDomain(
-	email, password, name string, age int,
+	email, password, name string, age int8,
 ) *userDomain {
 	return &userDomain{
 		email, password, name, age,
@@ -41,7 +41,7 @@ func (ud *userDomain) GetName() string {
 	return ud.name
 }
 
-func (ud *userDomain) GetAge() int {
+func (ud *userDomain) GetAge() int8 {
 	return ud.age
 }
 

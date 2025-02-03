@@ -5,7 +5,7 @@ import (
 	"github.com/giselescarvalho/CRUDemGo/src/configuration/apperror"
 )
 
-func FindUserById(c *gin.Context) {
+func (uc *userControllerInterface) FindUserById(c *gin.Context) {
 	err := apperror.NewBadRequestError("chamou de forma errada")
 	c.JSON(err.Code, err)
 }
